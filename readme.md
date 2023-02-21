@@ -6,7 +6,7 @@
 2) create index.html ```cp application/html/index.html.orig application/html/index.html``` That's because I'm using different ports
 3) run docker ```./bin/start```
 4) Set Data sources in Grafana to Prometheus ```http://<IP>:<Port>``` I have ```http://172.17.0.1:9090``` try ```ip addr show docker0```
-5) Import Dashboard ***Prometheus 2.0 Stats*** to Grafana
+5) Import Dashboard **Prometheus 2.0 Stats** to Grafana
 6) stop docker ```./bin/stop```
 7) restart docker ```./bin/restart```
 
