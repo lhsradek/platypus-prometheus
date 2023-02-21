@@ -10,4 +10,4 @@
 6) stop docker ```./bin/stop```
 7) restart docker ```./bin/restart```
 
-User 1001 will write to the directories ./data/prometheus and ./data/grafana. So it needs rights to those directories.
+User **1001** will write to the directories **./data/prometheus** and **./data/grafana**  so it needs rights to those directories.
