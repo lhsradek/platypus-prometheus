@@ -7,8 +7,8 @@
 3) run docker ```./bin/start```
 4) Set Data sources in Grafana to Prometheus ```http://<IP>:<Port>``` I have ```http://172.17.0.1:9090``` try ```ip addr show docker0```
 5) Import Dashboard **Prometheus 2.0 Stats** to Grafana
-6) stop docker ```./bin/stop```
-7) restart docker ```./bin/restart```
+6) restart docker ```./bin/restart```
+7) stop docker ```./bin/stop```
 
 User **1001** will write to the directories **./data/prometheus** and **./data/grafana**  so it needs rights to those directories.
 
