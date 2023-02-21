@@ -11,3 +11,7 @@
 7) restart docker ```./bin/restart```
 
 User **1001** will write to the directories **./data/prometheus** and **./data/grafana**  so it needs rights to those directories.
+
+<p>
+<img src="https://github.com/lhsradek/bttf/platupus-prometheus/png/Platypus_as_computer_metrics_watcher_by_Prometheus.png" width="300px" height="300px"/>
+</p>
