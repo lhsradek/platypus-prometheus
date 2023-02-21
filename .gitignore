@@ -1,0 +1,5 @@
+.env
+application/html/index.html
+data/grafana/
+data/prometheus/
+logs/

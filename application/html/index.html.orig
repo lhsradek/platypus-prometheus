@@ -1,0 +1,45 @@
+<html>
+<body>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs_CZ.UTF-8" lang="cs_CZ.UTF-8">
+<head>
+  <title>monitor.local</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="alternate icon" type="image/png" href="/favicon.png"/>
+  <link rel="shortcut icon" href="/favicon.png" type="image/png"/>
+</head>
+<body>
+  <h1><span><strong>monitor.local</strong></h1>
+  <div class="content">
+    <div class="content-middle">
+      <p>
+      <strong>Nginx for Prometheus test</strong>
+      </p>
+    </div>
+    <div class="content-columns">
+      <div class="content-column-left">
+        <h2>Content</h2>
+        <p>
+          <ul>
+            <li><a href="http://grafana.docker.monitor.local:3000">grafana.docker.monitor.local - Grafana</a></li>
+            <li><a href="http://docker.monitor.local:9090">docker.monitor.local - Prometheus</a></li>
+            <li>nginx.docker.monitor.local/nginx_status:80</li>
+            <li>exporter.docker.monitor.local/metrics:9113</li>
+          </ul>
+        </p>
+      </div>
+      <div class="content-column-right">
+        <h2>Documentation</h2>
+        <p>
+          <ul>
+              <li><a href="https://hub.docker.com/r/bitnami/grafana">hub.docker.com - Grafana</a></li>
+              <li><a href="https://hub.docker.com/_/nginx" target="_blank">hub.docker.com - Nginx</a></li>
+              <li><a href="https://hub.docker.com/r/nginx/nginx-prometheus-exporter" target="_blank">hub.docker.com - Nginx Prometheus Exporter</a></li>
+              <li><a href="https://hub.docker.com/r/bitnami/prometheus">hub.docker.com - Prometheus</a></li>
+	  </ul>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
