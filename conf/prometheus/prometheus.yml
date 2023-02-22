@@ -35,7 +35,7 @@ scrape_configs:
     
     static_configs:
       - targets: 
-        - "172.17.0.1:48888"
-        - "172.17.0.1:48889"
-        # - "172.17.0.1:9113"
+        - "host.docker.internal:48888"
+        # - "host.docker.internal:48889"
+        # - "host.docker.internal:9113"
 
