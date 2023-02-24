@@ -22,9 +22,12 @@
         <p>
           <ul>
             <li><a href="http://grafana.docker.monitor.local:3000">grafana.docker.monitor.local - Grafana</a></li>
+            <li><a href="http://docker.monitor.local:81">docker.monitor.local - Httpd</a></li>
             <li><a href="http://docker.monitor.local:9090">docker.monitor.local - Prometheus</a></li>
             <li>nginx.docker.monitor.local/nginx_status:80</li>
-            <li>exporter.docker.monitor.local/metrics:9113</li>
+            <li>httpd.docker.monitor.local/server_status:81</li>
+            <li>nginx-exporter.docker.monitor.local/metrics:9113</li>
+            <li>httpd-exporter.docker.monitor.local/metrics:9114</li>
           </ul>
         </p>
       </div>
@@ -33,6 +36,8 @@
         <p>
           <ul>
               <li><a href="https://hub.docker.com/r/bitnami/grafana">hub.docker.com - Grafana</a></li>
+              <li><a href="https://hub.docker.com/_/httpd">hub.docker.com - Httpd</a></li>
+              <li><a href="https://hub.docker.com/r/lusotycoon/apache-exporter">hub.docker.com - Httpd Prometheus exporter</a></li>
               <li><a href="https://hub.docker.com/_/nginx" target="_blank">hub.docker.com - Nginx</a></li>
               <li><a href="https://hub.docker.com/r/nginx/nginx-prometheus-exporter" target="_blank">hub.docker.com - Nginx Prometheus Exporter</a></li>
               <li><a href="https://hub.docker.com/r/bitnami/prometheus">hub.docker.com - Prometheus</a></li>

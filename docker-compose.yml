@@ -30,31 +30,71 @@ services:
       - ./conf/nginx/default-http.conf:/etc/nginx/conf.d/default.conf:ro
       - ./logs/nginx:/var/log/nginx
     healthcheck:
-       test: "curl -s -I http://nginx.${APP_HOST}.${INT_NETWORK}:80/favicon.ico | grep -q 'HTTP/1.1 200'"
-       interval: 10s
-       timeout: 2s
-       retries: 50
+      test: "curl -s -I http://nginx.${APP_HOST}.${INT_NETWORK}:80/favicon.ico | grep -q 'HTTP/1.1 200'"
+      interval: 10s
+      timeout: 2s
+      retries: 50
 
 #
 # === Nginx Prometheus Exporter===
 #        
-  exporter:
+  nginx-exporter:
     depends_on:
       nginx:
         condition: service_healthy
     # https://stackoverflow.com/questions/64952485/nginx-prometheus-exporter-container-cannot-connect-to-nginx
     image: nginx/nginx-prometheus-exporter
-    container_name: "${APP_HOST}-${APP_ID}-exporter"
-    hostname: "exporter.${APP_HOST}.${INT_NETWORK}"
+    container_name: "${APP_HOST}-${APP_ID}-nginx-exporter"
+    hostname: "nginx-exporter.${APP_HOST}.${INT_NETWORK}"
     restart: ${DOCKER_RESTART_POLICY}
     networks:
       - intnet
     ports:
-      - "${EXPORTER_PORT}:9113"
+      - "${NGINX_EXPORTER_PORT}:9113"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     command:
       - -nginx.scrape-uri=http://host.docker.internal:${NGINX_PORT}/nginx_status
+
+#
+# === Apache httpd ===
+#        
+  httpd:
+    image: httpd:2.4-alpine
+    container_name: "${APP_HOST}-${APP_ID}-httpd"
+    hostname: "httpd.${APP_HOST}.${INT_NETWORK}"
+    restart: ${DOCKER_RESTART_POLICY}
+    networks:
+      - intnet
+    ports:
+      - "${HTTPD_PORT}:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./conf/httpd:/usr/local/apache2/conf:ro
+    healthcheck:
+      test: "date | grep 'UTC'"
+      interval: 10s
+      timeout: 2s
+      retries: 50
+
+#
+# === Apache Httpd Prometheus Exporter===
+#        
+  httpd-exporter:
+    depends_on:
+      httpd:
+        condition: service_healthy
+    image: lusotycoon/apache-exporter
+    container_name: "${APP_HOST}-${APP_ID}-httpd-exporter"
+    hostname: "httpd-exporter.${APP_HOST}.${INT_NETWORK}"
+    restart: ${DOCKER_RESTART_POLICY}
+    privileged: true
+    ports:
+      - "${HTTPD_EXPORTER_PORT}:9117"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    entrypoint: /bin/apache_exporter --scrape_uri="http://host.docker.internal:${HTTPD_PORT}/server-status?auto"
 
 #
 # === Prometheus ===
@@ -62,6 +102,9 @@ services:
   prometheus:
     depends_on:
       nginx:
+        condition: service_healthy
+    depends_on:
+      httpd:
         condition: service_healthy
     # prometheus server
     image: docker.io/bitnami/prometheus:${PROMETHEUS_VERSION}
@@ -84,6 +127,9 @@ services:
   grafana:
     depends_on:
       nginx:
+        condition: service_healthy
+    depends_on:
+      httpd:
         condition: service_healthy
     image: docker.io/bitnami/grafana:${GRAFANA_VERSION}
     container_name: "${APP_HOST}-${APP_ID}-grafana"

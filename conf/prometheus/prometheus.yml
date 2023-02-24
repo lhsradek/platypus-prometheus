@@ -35,7 +35,12 @@ scrape_configs:
     
     static_configs:
       - targets: 
-        - "host.docker.internal:48888"
-        - "host.docker.internal:48889"
-        # - "host.docker.internal:9113"
+        - "host.docker.internal:9113"
 
+  - job_name: "httpd"
+    scheme: http
+    scrape_interval: 5s
+    
+    static_configs:
+      - targets: 
+        - "host.docker.internal:9114"
