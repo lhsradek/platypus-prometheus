@@ -36,7 +36,7 @@ services:
       retries: 50
 
 #
-# === Nginx Prometheus Exporter===
+# === Nginx Prometheus Exporter ===
 #        
   nginx-exporter:
     depends_on:
@@ -79,7 +79,7 @@ services:
       retries: 50
 
 #
-# === Apache httpd Prometheus Exporter===
+# === Apache httpd Prometheus Exporter ===
 #        
   httpd-exporter:
     depends_on:
