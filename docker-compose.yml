@@ -79,7 +79,7 @@ services:
       retries: 50
 
 #
-# === Apache Httpd Prometheus Exporter===
+# === Apache httpd Prometheus Exporter===
 #        
   httpd-exporter:
     depends_on:
