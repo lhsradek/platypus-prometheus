@@ -12,7 +12,7 @@
 
 User **1001** will write to the directories **./data/prometheus** and **./data/grafana**  so it needs rights to those directories.
 
-I monitor nginx, httpd and postgres. Prometheus monitors itself too.
+I monitor nginx, httpd and postgres. Prometheus monitors itself too. [See](https://github.com/lhsradek/platypus-prometheus/blob/main/png/prometheus.png)
 
 <p>
 <img src="https://github.com/lhsradek/platypus-prometheus/blob/main/png/Platypus_as_computer_metrics_watcher_by_Prometheus.png" width="400px" height="400px"/>
