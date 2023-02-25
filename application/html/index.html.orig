@@ -40,6 +40,7 @@
               <li><a href="https://hub.docker.com/r/lusotycoon/apache-exporter">hub.docker.com - Httpd Prometheus exporter</a></li>
               <li><a href="https://hub.docker.com/_/nginx" target="_blank">hub.docker.com - Nginx</a></li>
               <li><a href="https://hub.docker.com/r/nginx/nginx-prometheus-exporter" target="_blank">hub.docker.com - Nginx Prometheus Exporter</a></li>
+              <li><a href="https://hub.docker.com/r/prometheuscommunity/postgres-exporter" target="_blank">hub.docker.com - Postgres Prometheus Exporter</a></li>
               <li><a href="https://hub.docker.com/r/bitnami/prometheus">hub.docker.com - Prometheus</a></li>
 	  </ul>
         </p>
