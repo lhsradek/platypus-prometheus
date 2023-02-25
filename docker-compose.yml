@@ -12,7 +12,7 @@ services:
 
 #
 # === Nginx ===
-#        
+#
   nginx:
     # Alpine Linux - nginx for prometheus monitoring
     image: nginx:alpine
@@ -37,7 +37,7 @@ services:
 
 #
 # === Nginx Prometheus Exporter ===
-#        
+#
   nginx-exporter:
     depends_on:
       nginx:
@@ -58,7 +58,7 @@ services:
 
 #
 # === Apache httpd ===
-#        
+#
   httpd:
     image: httpd:2.4-alpine
     container_name: "${APP_HOST}-${APP_ID}-httpd"
@@ -80,7 +80,7 @@ services:
 
 #
 # === Apache httpd Prometheus Exporter ===
-#        
+#
   httpd-exporter:
     depends_on:
       httpd:
@@ -99,7 +99,7 @@ services:
 
 #
 # === PostgreSQL ===
-#        
+#
   db:
     image: postgres:14-alpine
     container_name: "${APP_HOST}-${APP_ID}-db"
@@ -118,7 +118,7 @@ services:
 #
 # === PostgreSQL Prometheus Exporter ===
 # https://github.com/prometheus-community/postgres_exporter
-#        
+#
   db-exporter:
     image: prometheuscommunity/postgres-exporter
     container_name: "${APP_HOST}-${APP_ID}-db-exporter"
@@ -133,9 +133,9 @@ services:
     environment:
       - DATA_SOURCE_NAME=postgresql://postgres_exporter:${POSTGRES_PASSWORD}@host.docker.internal:${POSTGRES_PORT}/postgres?sslmode=disable
 
-
+#
 # === Prometheus ===
-#        
+#
   prometheus:
     depends_on:
       nginx:
@@ -160,7 +160,7 @@ services:
 
 #
 # === Grafana ===
-#        
+#
   grafana:
     depends_on:
       nginx:
