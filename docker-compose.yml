@@ -89,7 +89,6 @@ services:
     container_name: "${APP_HOST}-${APP_ID}-httpd-exporter"
     hostname: "httpd-exporter.${APP_HOST}.${INT_NETWORK}"
     restart: ${DOCKER_RESTART_POLICY}
-    privileged: true
     ports:
       - "${HTTPD_EXPORTER_PORT}:9117"
     extra_hosts:
