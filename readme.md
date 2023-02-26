@@ -56,7 +56,7 @@ Creating www-monitor-nginx-exporter    ... done
 
 User **1001** will write to the directories **./data/prometheus** and **./data/grafana**  so it needs rights to those directories.
 
-We monitor httpd, nginx, postgres, prometheus, tomcat and wildfly. Apache Httpd seems to be the slowest. It's a surprise to me and platypus that it's slower than postgres.
+We monitor httpd, nginx, postgres, prometheus, tomcat and wildfly.
 
 See:
 * [prometheus](https://github.com/lhsradek/platypus-prometheus/blob/main/png/prometheus.png)
