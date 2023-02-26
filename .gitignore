@@ -3,4 +3,5 @@ application/html/index.html
 data/grafana/
 data/postgres/
 data/prometheus/
+data/wildfly/
 logs/

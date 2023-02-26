@@ -42,6 +42,8 @@
               <li><a href="https://hub.docker.com/r/nginx/nginx-prometheus-exporter" target="_blank">hub.docker.com - Nginx Prometheus Exporter</a></li>
               <li><a href="https://hub.docker.com/r/prometheuscommunity/postgres-exporter" target="_blank">hub.docker.com - Postgres Prometheus Exporter</a></li>
               <li><a href="https://hub.docker.com/r/bitnami/prometheus">hub.docker.com - Prometheus</a></li>
+              <li><a href="https://hub.docker.com/_/tomcat" target="_blank">hub.docker.com - Tomcat</a></li>
+              <li><a href="https://hub.docker.com/r/bitnami/wildfly">hub.docker.com - WildFly</a></li>
 	  </ul>
         </p>
       </div>
