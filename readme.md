@@ -56,7 +56,7 @@ Creating www-monitor-nginx-exporter    ... done
 
 User **1001** will write to the directories **./data/prometheus** and **./data/grafana**  so it needs rights to those directories.
 
-We monitor httpd, nginx, postgres, prometheus, tomcat and wildfly.
+We monitor (with platypus) httpd, nginx, postgres, prometheus, tomcat and wildfly.
 
 See:
 * [prometheus](https://github.com/lhsradek/platypus-prometheus/blob/main/png/prometheus.png)
