@@ -8,6 +8,9 @@
  * when $remove = 0 - it is only printed
  * when $remove = 1 - they are deleted
  *
+ * If you miss the ```perl-Math-BigInt``` package, comment out use ```Math::BigInt``` on line 18 and also Math::BigInt->new($word); on line 42.
+ * Even without them, it is checked that the name is hexadecimal on line 40.
+ *
  */
 =cut
 
