@@ -63,5 +63,5 @@ See:
 * [grafana](https://github.com/lhsradek/platypus-prometheus/blob/main/png/grafana.png)
 
 <p>
-<img src="https://github.com/lhsradek/platypus-prometheus/blob/main/png/Platypus_as_computer_metrics_watcher_by_Prometheus.png" width="400px" height="400px"/>
+<img src="png/Platypus_as_computer_metrics_watcher_by_Prometheus.png" width="400px" height="400px"/>
 </p>
