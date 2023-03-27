@@ -1,5 +1,9 @@
 # Platypus Prometheus + Grafana
 
+<p>
+<img src="png/Platypus_as_computer_metrics_watcher_by_Prometheus.png" width="400px" height="400px"/>
+</p>
+
 ## Setup
 
 1) create .env file ```cp .env.dist .env```
@@ -61,7 +65,3 @@ We monitor (with platypus) httpd, nginx, postgres, prometheus, tomcat and wildfl
 See:
 * [prometheus](https://github.com/lhsradek/platypus-prometheus/blob/main/png/prometheus.png)
 * [grafana](https://github.com/lhsradek/platypus-prometheus/blob/main/png/grafana.png)
-
-<p>
-<img src="png/Platypus_as_computer_metrics_watcher_by_Prometheus.png" width="400px" height="400px"/>
-</p>
