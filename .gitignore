@@ -1,5 +1,6 @@
 .env
 application/html/index.html
+certs/
 data/grafana/
 data/postgres/
 data/prometheus/

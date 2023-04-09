@@ -218,6 +218,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
+      - ./certs/ca.crt:/opt/bitnami/prometheus/conf/ca.crt
       - ./conf/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
       - ./data/prometheus:/opt/bitnami/prometheus/data:rw
 

@@ -28,6 +28,15 @@ scrape_configs:
       - targets: 
         - "localhost:9090"
 
+  - job_name: "quarkus"
+    scrape_interval: 5s
+    metrics_path: "/q/metrics"
+    scheme: https
+    tls_config:
+      ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
+    static_configs:
+      - targets: ["lhs.intranet.local:8443"]
+
   - job_name: "httpd"
     scrape_interval: 5s
     static_configs:
