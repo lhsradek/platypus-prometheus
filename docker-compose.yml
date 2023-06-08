@@ -7,42 +7,25 @@ networks:
 
 services:
 
-
 #
-# === Elasticsearch ===
-#
-  elasticsearch_exporter:
-    image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
-    container_name: "${APP_HOST}-${APP_ID}-elasticsearch-exporter"
-    hostname: "elasticsearch-exporter.${APP_HOST}.${INT_NETWORK}"
-    restart: ${DOCKER_RESTART_POLICY}
-    networks:
-      - default
-    ports:
-      - "9114:9114"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    command: [
-      "--es.uri=http://elastic:changeme@host.docker.internal:9200"
-    ]
-
-#
-# === Nginx Prometheus Exporter ===
-#
-#   nginx-exporter:
-#   # https://stackoverflow.com/questions/64952485/nginx-prometheus-exporter-container-cannot-connect-to-nginx
-#     image: nginx/nginx-prometheus-exporter
-#     container_name: "${APP_HOST}-${APP_ID}-nginx-exporter"
-#     hostname: "nginx-exporter.${APP_HOST}.${INT_NETWORK}"
+# === WildFly ===
+#        
+#   wildfly:
+#     image: docker.io/bitnami/wildfly:27
+#     container_name: "${APP_HOST}-${APP_ID}-wildfly"
+#     hostname: "wildfly.${APP_HOST}.${INT_NETWORK}"
 #     restart: ${DOCKER_RESTART_POLICY}
 #     networks:
 #       - default
 #     ports:
-#       - "${NGINX_EXPORTER_PORT}:9113"
-#     extra_hosts:
-#       - "host.docker.internal:host-gateway"
-#     command:
-#       - -nginx.scrape-uri=http://host.docker.internal:${NGINX_PORT}/stub_status
+#       - "${WILDFLY_PORT}:${WILDFLY_PORT}"
+#       - "${WILDFLY_CONSOLE_PORT}:9990"
+#     volumes:
+#       - ./data/wildfly:/bitnami/wildfly
+#     environment:
+#       - WILDFLY_PASSWORD=${WILDFLY_PASSWORD}
+#       - WILDFLY_USERNAME=${WILDFLY_USERNAME}
+#       - WILDFLY_MANAGEMENT_LISTEN_ADDRESS=${WILDFLY_MANAGEMENT_LISTEN_ADDRESS}
 
 #
 # === Prometheus ===
@@ -84,3 +67,105 @@ services:
       - ./conf/grafana/grafana.ini:/opt/bitnami/grafana/conf/grafana.ini
       - ./conf/grafana/default.ini:/opt/bitnami/grafana/conf/defaults.ini
       - ./data/grafana:/opt/bitnami/grafana/data:rw
+
+#
+# === Elasticsearch ===
+#
+#   elasticsearch_exporter:
+#     image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+#     container_name: "${APP_HOST}-${APP_ID}-elasticsearch-exporter"
+#     hostname: "elasticsearch-exporter.${APP_HOST}.${INT_NETWORK}"
+#     restart: ${DOCKER_RESTART_POLICY}
+#     networks:
+#       - default
+#     ports:
+#       - "9114:9114"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     command: [
+#       "--es.uri=http://elastic:changeme@host.docker.internal:9200"
+#     ]
+
+#
+# === Nginx Prometheus Exporter ===
+#
+#   nginx-exporter:
+#   # https://stackoverflow.com/questions/64952485/nginx-prometheus-exporter-container-cannot-connect-to-nginx
+#     image: nginx/nginx-prometheus-exporter
+#     container_name: "${APP_HOST}-${APP_ID}-nginx-exporter"
+#     hostname: "nginx-exporter.${APP_HOST}.${INT_NETWORK}"
+#     restart: ${DOCKER_RESTART_POLICY}
+#     networks:
+#       - default
+#     ports:
+#       - "${NGINX_EXPORTER_PORT}:9113"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     command:
+#       - -nginx.scrape-uri=http://host.docker.internal:${NGINX_PORT}/stub_status
+
+# === Tomcat Prometheus Exporter ===
+#
+# https://github.com/aklinkert/jolokia_exporter
+#        
+#
+#   notary-exporter:
+#     image: scalify/jolokia_exporter
+#     container_name: "${APP_HOST}-${APP_ID}-notary-exporter"
+#     hostname: "notary-exporter.${APP_HOST}.${INT_NETWORK}"
+#     restart: ${DOCKER_RESTART_POLICY}
+#     networks:
+#       - default
+#     ports:
+#       - "${NOTARY_EXPORTER_PORT}:9422"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     volumes:
+#       - ./conf/fixtures:/fixtures
+#     command: [
+#       "export", "/fixtures/config.yml", "http://host.docker.internal:${NOTARY_PORT}/jolokia/",
+#       "--basic-auth-user", "${JOLOKIA_USERNAME}",
+#       "--basic-auth-password", "${JOLOKIA_PASSWORD}",
+#       "--insecure"
+#     ]
+
+#   cdcp-exporter:
+#     image: scalify/jolokia_exporter
+#     container_name: "${APP_HOST}-${APP_ID}-cdcp-exporter"
+#     hostname: "cdcp-exporter.${APP_HOST}.${INT_NETWORK}"
+#     restart: ${DOCKER_RESTART_POLICY}
+#     networks:
+#       - default
+#     ports:
+#       - "${CDCP_EXPORTER_PORT}:9422"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     volumes:
+#       - ./conf/fixtures:/fixtures
+#     command: [
+#       "export", "/fixtures/config.yml", "http://host.docker.internal:${CDCP_PORT}/jolokia/",
+#       "--basic-auth-user", "${JOLOKIA_USERNAME}",
+#       "--basic-auth-password", "${JOLOKIA_PASSWORD}",
+#       "--insecure"
+#     ]
+ 
+#   u1-exporter:
+#     image: scalify/jolokia_exporter
+#     container_name: "${APP_HOST}-${APP_ID}-u1-exporter"
+#     hostname: "u1-exporter.${APP_HOST}.${INT_NETWORK}"
+#     restart: ${DOCKER_RESTART_POLICY}
+#     networks:
+#       - default
+#     ports:
+#       - "${U1_EXPORTER_PORT}:9422"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     volumes:
+#       - ./conf/fixtures:/fixtures
+#     command: [
+#       "export", "/fixtures/config.yml", "http://host.docker.internal:${U1_PORT}/jolokia/",
+#       "--basic-auth-user", "${JOLOKIA_USERNAME}",
+#       "--basic-auth-password", "${JOLOKIA_PASSWORD}",
+#       "--insecure"
+#     ]
+
