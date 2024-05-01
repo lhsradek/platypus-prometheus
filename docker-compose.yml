@@ -41,6 +41,15 @@ services:
       - "${MONITOR_PORT}:9090"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # https://www.shellhacks.com/prometheus-delete-time-series-metrics/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      # - '--web.enable-admin-api'
+      - '--storage.tsdb.retention.time=40d'
+      # - '--storage.tsdb.path=/prometheus'
+      # - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      # - '--web.console.templates=/usr/share/prometheus/consoles'
+
     volumes:
       - ./certs/ca.crt:/opt/bitnami/prometheus/conf/ca.crt
       - ./conf/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
@@ -67,6 +76,25 @@ services:
       - ./conf/grafana/grafana.ini:/opt/bitnami/grafana/conf/grafana.ini
       - ./conf/grafana/default.ini:/opt/bitnami/grafana/conf/defaults.ini
       - ./data/grafana:/opt/bitnami/grafana/data:rw
+
+#
+# === Node exporter ===
+#
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: "${APP_HOST}-${APP_ID}-node_exporter"
+    hostname: "node_exporter.${APP_HOST}.${INT_NETWORK}"
+    restart: ${DOCKER_RESTART_POLICY}
+    pid: host
+    # network_mode: host
+    networks:
+      - default
+    ports:
+      - "9100:9100"
+    command:
+      - '--path.rootfs=/host'
+    volumes:
+      - ./data/node_exporter:/host:ro
 
 #
 # === Elasticsearch ===
@@ -104,11 +132,11 @@ services:
 #     command:
 #       - -nginx.scrape-uri=http://host.docker.internal:${NGINX_PORT}/stub_status
 
-# === Tomcat Prometheus Exporter ===
+# === Jolokia Prometheus Exporter ===
 #
 # https://github.com/aklinkert/jolokia_exporter
 #        
-#
+
 #   notary-exporter:
 #     image: scalify/jolokia_exporter
 #     container_name: "${APP_HOST}-${APP_ID}-notary-exporter"
@@ -148,7 +176,7 @@ services:
 #       "--basic-auth-password", "${JOLOKIA_PASSWORD}",
 #       "--insecure"
 #     ]
- 
+
 #   u1-exporter:
 #     image: scalify/jolokia_exporter
 #     container_name: "${APP_HOST}-${APP_ID}-u1-exporter"
@@ -169,3 +197,22 @@ services:
 #       "--insecure"
 #     ]
 
+#   u2-exporter:
+#     image: scalify/jolokia_exporter
+#     container_name: "${APP_HOST}-${APP_ID}-u2-exporter"
+#     hostname: "u1-exporter.${APP_HOST}.${INT_NETWORK}"
+#     restart: ${DOCKER_RESTART_POLICY}
+#     networks:
+#       - default
+#     ports:
+#       - "${U2_EXPORTER_PORT}:9422"
+#     extra_hosts:
+#       - "host.docker.internal:host-gateway"
+#     volumes:
+#       - ./conf/fixtures:/fixtures
+#     command: [
+#       "export", "/fixtures/config.yml", "http://host.docker.internal:${U2_PORT}/jolokia/",
+#       "--basic-auth-user", "${JOLOKIA_USERNAME}",
+#       "--basic-auth-password", "${JOLOKIA_PASSWORD}",
+#       "--insecure"
+#     ]
