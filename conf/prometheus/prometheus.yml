@@ -109,7 +109,7 @@ scrape_configs:
     scrape_interval: 5s
     metrics_path: "/q/metrics"
     static_configs:
-      - targets: ["not.intranet.local:58060"]
+      - targets: ["host.docker.internal:28060"]
 
   # - job_name: "es01"
   #   scrape_interval: 5s
