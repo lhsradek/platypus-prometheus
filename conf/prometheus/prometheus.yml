@@ -75,35 +75,35 @@ scrape_configs:
   - job_name: "cdcp"
     scrape_interval: 5s
     metrics_path: "/q/metrics"
-    scheme: https
-    tls_config:
-      ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
-      insecure_skip_verify: true
+    # scheme: https
+    # tls_config:
+    #   ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
+    #   insecure_skip_verify: true
     static_configs:
       # - targets: ["not.intranet.local:28088"]
-      - targets: ["host.docker.internal:28448"]
+      - targets: ["host.docker.internal:28090"]
 
   - job_name: "u1"
     scrape_interval: 5s
     metrics_path: "/q/metrics"
-    scheme: https
-    tls_config:
-      ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
-      insecure_skip_verify: true
+    # scheme: https
+    # tls_config:
+    #   ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
+    #   insecure_skip_verify: true
     static_configs:
       # - targets: ["not.intranet.local:48088"]
-      - targets: ["host.docker.internal:48448"]
+      - targets: ["host.docker.internal:48090"]
 
   - job_name: "u2"
     scrape_interval: 5s
     metrics_path: "/q/metrics"
-    scheme: https
-    tls_config:
-      ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
-      insecure_skip_verify: true
+    # scheme: https
+    # tls_config:
+    #   ca_file: "/opt/bitnami/prometheus/conf/ca.crt"
+    #   insecure_skip_verify: true
     static_configs:
       # - targets: ["not.intranet.local:58088"]
-      - targets: ["host.docker.internal:58448"]
+      - targets: ["host.docker.internal:58090"]
 
   - job_name: "gui-api-cdcp"
     scrape_interval: 5s
